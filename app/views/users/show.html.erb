@@ -1,3 +1,37 @@
 <h1><%= @user.email %></h1>
+<br><br>
+<div class="row">
+  <div class="col-md-7">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h3>Available locations:</h3></div>
+      <div class="panel-body">
+        <% @user.rentals.each do |rental| %>
+          <% if rental.people > 0 %>
+            <p><%= rental.location %> <%= rental.people %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
 
-<p>More coming soon!</p>
+    <br><br>
+    <div class="panel panel-warning">
+      <div class="panel-heading"><h3>Unavailable locations:</h3></div>
+      <div class="panel-body">
+        <% @user.rentals.each do |rental| %>
+          <% if rental.people == 0 %>
+            <p><%= rental.location %> <%= rental.people %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 pull-right">
+    <div class="panel panel-info">
+      <div class="panel-heading"><h3>Add Rental:</h3></div>
+      <div class="panel-body">
+        <%= render "rentals/form" %>
+      </div>
+    </div>
+  </div>
+</div>

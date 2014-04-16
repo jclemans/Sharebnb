@@ -1,0 +1,6 @@
+<%= form_for @rental do |f| %>
+  <%= f.text_field :location, placeholder: "city, state", class: "form-control" %><br>
+  <%= f.text_field :description, placeholder: "2 beds, 1 bath, downtown", class: "form-control"  %><br>
+  <%= f.number_field :people, placeholder: "accommodates", class: "form-control"  %><br>
+  <%= f.submit "Create Rental", class: "btn btn-success"%>
+<% end %>
