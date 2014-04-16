@@ -2,34 +2,39 @@
 <br><br>
 <div class="row">
   <div class="col-md-7">
-    <div class="panel panel-primary">
-      <div class="panel-heading"><h3>Available locations:</h3></div>
-      <div class="panel-body">
-        <% @user.rentals.each do |rental| %>
-          <% if rental.people > 0 %>
-            <p><%= rental.location %> <%= rental.people %></p>
+    <% if @user.rentals != [] && @user.rentals.size > 1 %>
+      <div class="panel panel-primary">
+        <div class="panel-heading"><h3>Available locations:</h3></div>
+        <div class="panel-body">
+          <% @user.rentals.each do |rental| %>
+            <% if rental.people.to_i > 0 %>
+              <p><%= rental.location %> | <%= rental.people %> available</p>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
 
-    <br><br>
-    <div class="panel panel-warning">
-      <div class="panel-heading"><h3>Unavailable locations:</h3></div>
-      <div class="panel-body">
-        <% @user.rentals.each do |rental| %>
-          <% if rental.people == 0 %>
-            <p><%= rental.location %> <%= rental.people %></p>
+      <br><br>
+      <div class="panel panel-warning">
+        <div class="panel-heading"><h3>Unavailable locations:</h3></div>
+        <div class="panel-body">
+          <% @user.rentals.each do |rental| %>
+            <% if rental.people == 0 %>
+              <p><%= rental.location %> | <%= rental.people %></p>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <h3>No rentals! Add one now -- -></h3>
+    <% end %>
   </div>
 
   <div class="col-md-4 pull-right">
     <div class="panel panel-info">
       <div class="panel-heading"><h3>Add Rental:</h3></div>
       <div class="panel-body">
+        <%= render "layouts/errors", object: @rental %>
         <%= render "rentals/form" %>
       </div>
     </div>
