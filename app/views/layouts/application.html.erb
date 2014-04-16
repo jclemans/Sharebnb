@@ -38,8 +38,11 @@
 </nav>
 
 <div class="container">
-  <%= flash[:notice] %>
-  <%= flash[:alert] %>
+  <% if !flash[:notice].nil? %>
+    <div class="alert alert-success"><%= flash[:notice] %></div>
+  <% elsif !flash[:alert].nil? %>
+    <div class="alert alert-danger"><%= flash[:alert] %></div>
+  <% end %>
   <%= yield %>
 </div>
 

@@ -12,7 +12,7 @@ class RentalsController < ApplicationController
     @user = User.find(params[:rental][:user_id])
     @rental = @user.rentals.new(rental_params)
     if @rental.save
-      redirect_to root_path
+      redirect_to user_path(current_user)
     else
       render 'users/show'
     end
@@ -22,10 +22,16 @@ class RentalsController < ApplicationController
     @user = User.find(params[:rental][:user_id])
     @rental = Rental.find(params[:id])
     if @rental.update(rental_params)
-      redirect_to root_path
+      redirect_to user_path
     else
       render 'show'
     end
+  end
+
+  def destroy
+    @rental = Rental.find(params[:id])
+    @rental.destroy
+    redirect_to user_path, alert: 'Rental removed.'
   end
 
 

@@ -7,4 +7,9 @@
   <%= f.number_field :guests, placeholder: "number of guests", class: "form-control"  %><br>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit "Submit", class: "btn btn-success"%>
+
+  <% if !@rental.id.nil? %>
+  <%= link_to "Remove", rental_path, method: "delete", :confirm => "Are you sure you want to remove this rental?", class: "btn btn-danger" %>
+  <% end %>
+
 <% end %>
