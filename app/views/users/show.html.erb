@@ -8,7 +8,7 @@
         <div class="panel-body">
           <% @user.rentals.each do |rental| %>
             <% if rental.guests.to_i > 0 %>
-              <p><%= link_to "#{rental.location} | #{rental.guests} available", rental_path(rental) %></p>
+              <p><%= image_tag rental.img.url(:thumb) %> <%= link_to "#{rental.location} | #{rental.guests} available", rental_path(rental) %></p>
             <% end %>
           <% end %>
         </div>

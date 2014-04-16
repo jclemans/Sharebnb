@@ -4,17 +4,19 @@
 
 <ul>
 <% @rentals.each do |rental| %>
+  <a href="/rentals/<%=rental.id%>">
   <div class="panel panel-info">
-    <div class="panel-body">
+    <div class="panel-body" id="highlighted">
       <div class="row">
-        <div class="col-md-4">
-          rental.picture here
+        <div class="col-md-3">
+          <%= image_tag rental.img.url(:medium) %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
         <%= rental.location %> | <%= rental.description %>
         </div>
       </div>
     </div>
   </div>
+  </a>
 <% end %>
 

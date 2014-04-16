@@ -5,12 +5,19 @@
   <%= render 'form' %>
 
 <% else %>
+
   <h1>Rental at '<%= @rental.location %>' </h1>
   <h2>owned by '<%= @user.email %>'</h2>
   <hr>
-  <h3>Description</h3>
-  <p><%= @rental.description %></p>
-
-  <h3>Accomodates up to</h3>
-  <p><%= pluralize(@rental.guests, 'guest') %></p>
+  <div class="row">
+    <div class="col-md-6">
+      <%= image_tag @rental.img.url(:big) %>
+    </div>
+    <div class="col-md-6">
+      <h3>Description</h3>
+      <p><%= @rental.description %></p>
+      <h3>Accomodates up to</h3>
+      <p><%= pluralize(@rental.guests, 'guest') %></p>
+    </div>
+  </div>
 <% end %>

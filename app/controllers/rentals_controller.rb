@@ -6,6 +6,7 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
+    @user = @rental.user
   end
 
   def create
@@ -37,6 +38,6 @@ class RentalsController < ApplicationController
 
 private
   def rental_params
-    params.require(:rental).permit(:description, :location, :guests)
+    params.require(:rental).permit(:description, :location, :guests, :img)
   end
 end
