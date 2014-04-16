@@ -1,0 +1,16 @@
+<% if current_user == @rental.user %>
+  <h1>Rental at '<%= @rental.location %>' </h1>
+  <hr>
+  <%= render "layouts/errors", object: @rental %>
+  <%= render 'form' %>
+
+<% else %>
+  <h1>Rental at '<%= @rental.location %>' </h1>
+  <h2>owned by '<%= @user.email %>'</h2>
+  <hr>
+  <h3>Description</h3>
+  <p><%= @rental.description %></p>
+
+  <h3>Accomodates up to</h3>
+  <p><%= pluralize(@rental.guests, 'guest') %></p>
+<% end %>

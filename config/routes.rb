@@ -1,5 +1,5 @@
 Sharebnb::Application.routes.draw do
-  root to: 'users#show'
+  root to: 'rentals#index'
   devise_for :users
   resources :users, only: [:show, :index]
   resources :rentals

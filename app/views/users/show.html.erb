@@ -7,8 +7,8 @@
         <div class="panel-heading"><h3>Available locations:</h3></div>
         <div class="panel-body">
           <% @user.rentals.each do |rental| %>
-            <% if rental.people.to_i > 0 %>
-              <p><%= rental.location %> | <%= rental.people %> available</p>
+            <% if rental.guests.to_i > 0 %>
+              <p><%= link_to "#{rental.location} | #{rental.guests} available", rental_path(rental) %></p>
             <% end %>
           <% end %>
         </div>
@@ -19,8 +19,8 @@
         <div class="panel-heading"><h3>Unavailable locations:</h3></div>
         <div class="panel-body">
           <% @user.rentals.each do |rental| %>
-            <% if rental.people == 0 %>
-              <p><%= rental.location %> | <%= rental.people %></p>
+            <% if rental.guests == 0 %>
+              <p><%= rental.location %> | <%= rental.guests %></p>
             <% end %>
           <% end %>
         </div>

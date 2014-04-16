@@ -1,7 +1,10 @@
 <%= form_for @rental do |f| %>
+  <%= f.label :location, "Location" %>
   <%= f.text_field :location, placeholder: "city, state", class: "form-control" %><br>
+  <%= f.label :description, "Description" %>
   <%= f.text_field :description, placeholder: "2 beds, 1 bath, downtown", class: "form-control"  %><br>
-  <%= f.number_field :people, placeholder: "number of guests", class: "form-control"  %><br>
-  <%= f.hidden_field :user_id, value: @user.id %>
-  <%= f.submit "Create Rental", class: "btn btn-success"%>
+  <%= f.label :guests, "Guests" %>
+  <%= f.number_field :guests, placeholder: "number of guests", class: "form-control"  %><br>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit "Submit", class: "btn btn-success"%>
 <% end %>
