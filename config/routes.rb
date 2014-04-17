@@ -3,4 +3,5 @@ Sharebnb::Application.routes.draw do
   devise_for :users
   resources :users, only: [:show, :index]
   resources :rentals
+  resources :reservations
 end

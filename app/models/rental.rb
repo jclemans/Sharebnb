@@ -1,5 +1,7 @@
 class Rental < ActiveRecord::Base
   belongs_to :user
+  has_many :reservations
+  has_many :users, through: :reservations
   validates :location, presence: true
   validates :description, presence: true
   validates :guests, presence: true,

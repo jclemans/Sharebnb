@@ -6,6 +6,7 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
+    @reservation = Reservation.new
     @user = @rental.user
   end
 

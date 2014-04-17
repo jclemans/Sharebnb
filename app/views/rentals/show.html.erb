@@ -18,6 +18,17 @@
       <p><%= @rental.description %></p>
       <h3>Accomodates up to</h3>
       <p><%= pluralize(@rental.guests, 'guest') %></p>
+      <% if user_signed_in? %>
+      <hr>
+        <%= form_for @reservation do |f| %>
+          <%= f.label :booked, "Guests" %>
+          <%= f.number_field :booked, placeholder: "example: 4", class: "form-control" %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :rental_id, value: @rental.id %>
+          <br>
+          <%= f.submit "Bookit!", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 <% end %>

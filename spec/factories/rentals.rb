@@ -1,6 +1,9 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :rental do
+    description "has stuff"
+    location "pdx"
+    price 100
+    guests 3
+    id 99
   end
 end
