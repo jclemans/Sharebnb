@@ -17,6 +17,8 @@
       <p><%= @rental.description %></p>
       <h3>Accomodates up to</h3>
       <p><%= pluralize(@rental.guests, 'guest') %></p>
+      <h3>Price per day</h3>
+      <p><%= number_to_currency(@rental.price) %></p>
       <% if user_signed_in? %>
       <hr>
         <%= form_for @reservation do |f| %>

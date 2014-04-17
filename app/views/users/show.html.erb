@@ -1,42 +1,64 @@
 <h1><%= @user.email %></h1>
-<br><br>
+<br>
 <div class="row">
-  <div class="col-md-7">
 
-    <% if @user.rentals.size > 0 %>
+  <ul class="nav nav-tabs">
+    <li id="reservations_tab" class="active"><a>Reservations</a></li>
+    <li id="rentals_tab"><a>My Rentals</a></li>
+  </ul><br>
+
+  <div class="reservations">
+    <div class="col-md-7">
       <div class="panel panel-primary">
-        <div class="panel-heading"><h3>Available locations:</h3></div>
+        <div class="panel-heading"><h3>Upcoming Reservations</h3></div>
         <div class="panel-body">
-          <% @user.rentals.each do |rental| %>
-            <% if rental.guests.to_i > 0 %>
-              <p><%= image_tag rental.img.url(:thumb) %> <%= link_to "#{rental.location} | #{rental.guests} available", rental_path(rental) %></p>
-            <% end %>
+          <% @user.reservations.each do |reservation| %>
+            <%= image_tag reservation.rental.img.url(:thumb) %>  &nbsp <%= link_to "#{reservation.rental.location}", rental_path(reservation.rental) %>
           <% end %>
         </div>
       </div>
-
-      <br><br>
-      <div class="panel panel-warning">
-        <div class="panel-heading"><h3>Unavailable locations:</h3></div>
-        <div class="panel-body">
-          <% @user.rentals.each do |rental| %>
-            <% if rental.guests == 0 %>
-              <p><%= rental.location %> | <%= rental.guests %></p>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    <% else %>
-      <h3>No rentals! Add one now -- -></h3>
-    <% end %>
+    </div>
+    <div class="col-md-4 pull-right">
+    </div>
   </div>
 
-  <div class="col-md-4 pull-right">
-    <div class="panel panel-info">
-      <div class="panel-heading"><h3>Add Rental:</h3></div>
-      <div class="panel-body">
-        <%= render "layouts/errors", object: @rental %>
-        <%= render "rentals/form" %>
+  <div class="rentals">
+    <div class="col-md-7">
+      <% if @user.rentals.size > 0 %>
+        <div class="panel panel-primary">
+          <div class="panel-heading"><h3>Available locations</h3></div>
+          <div class="panel-body">
+            <% @user.rentals.each do |rental| %>
+              <%# if rental.reservation.booked %>
+                <p><%= image_tag rental.img.url(:thumb) %> &nbsp <%= link_to "#{rental.location} | #{rental.guests} available", rental_path(rental) %></p>
+              <%# end %>
+            <% end %>
+          </div>
+        </div>
+
+        <br><br>
+        <div class="panel panel-warning">
+          <div class="panel-heading"><h3>Rented locations</h3></div>
+          <div class="panel-body">
+            <% @user.rentals.each do |rental| %>
+              <% if rental.guests.to_i == 0 %>
+                <p><%= image_tag rental.img.url(:thumb) %> &nbsp <%= link_to "#{rental.location} | #{rental.guests} available", rental_path(rental) %></p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        <h3>No rentals! Add one now -- -></h3>
+      <% end %>
+    </div>
+
+    <div class="col-md-4 pull-right">
+      <div class="panel panel-info">
+        <div class="panel-heading"><h3>Add Rental</h3></div>
+        <div class="panel-body">
+          <%= render "layouts/errors", object: @rental %>
+          <%= render "rentals/form" %>
+        </div>
       </div>
     </div>
   </div>

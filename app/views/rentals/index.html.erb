@@ -4,7 +4,7 @@
 
 <ul>
 <% @rentals.each do |rental| %>
-  <% if rental.guests.to_i > Reservation.total_booked(rental.id).to_i %>
+
     <a href="/rentals/<%=rental.id%>">
     <div class="panel panel-info">
       <div class="panel-body" id="highlighted">
@@ -13,12 +13,14 @@
             <%= image_tag rental.img.url(:medium) %>
           </div>
           <div class="col-md-9">
-          <%= rental.location %> | <%= rental.description %>
+            <%= rental.location %> <br>
+            <%= rental.description %> <br>
+            <%= number_to_currency(rental.price) %>
           </div>
         </div>
       </div>
     </div>
     </a>
-  <% end %>
+
 <% end %>
 
