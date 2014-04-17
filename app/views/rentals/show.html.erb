@@ -27,7 +27,12 @@
           <%= f.hidden_field :user_id, value: current_user.id %>
           <%= f.hidden_field :rental_id, value: @rental.id %>
           <br>
-          <%= f.submit "Bookit!", class: "btn btn-primary" %>
+          <% if !current_user.has_booked?(@rental.id) %>
+            <%= f.submit "Bookit!", class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+        <% if current_user.has_booked?(@rental.id) %>
+        <%= link_to "Cancel", reservation_path, method: "delete", class: "btn btn-danger" %>
         <% end %>
       <% end %>
     </div>
