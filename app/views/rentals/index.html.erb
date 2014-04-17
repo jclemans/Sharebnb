@@ -1,8 +1,31 @@
 <h1>Sharebnb</h1>
 <hr>
-<h3>Available Rentals</h3>
 
-<ul>
+<% if @search.size > 0 %>
+  <h3>Search Results</h3>
+  <% @search.each do |rental| %>
+    <% if !rental.is_booked? %>
+      <a href="/rentals/<%=rental.id%>">
+      <div class="panel panel-info">
+        <div class="panel-body" id="highlighted">
+          <div class="row">
+            <div class="col-md-3">
+              <%= image_tag rental.img.url(:medium) %>
+            </div>
+            <div class="col-md-9">
+              <%= rental.location %> <br>
+              <%= rental.description %> <br>
+              <%= number_to_currency(rental.price) %>
+            </div>
+          </div>
+        </div>
+      </div>
+      </a>
+    <% end %>
+  <% end %>
+  <br><hr>
+<% end %>
+<h3>All Available Rentals</h3>
 <% @rentals.each do |rental| %>
   <% if !rental.is_booked? %>
     <a href="/rentals/<%=rental.id%>">

@@ -17,4 +17,8 @@ class Rental < ActiveRecord::Base
       user.reservations.find_by(rental_id: self.id)
     end
   end
+
+  def find_renter
+    User.find(self.reservations.find_by(rental_id: self.id).user_id)
+  end
 end

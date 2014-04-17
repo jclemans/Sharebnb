@@ -6,7 +6,7 @@
 <% else %>
 
   <h1>Rental at '<%= @rental.location %>' </h1>
-  <h2>owned by '<%= @user.email %>'</h2>
+  <h3>owned by '<%= @user.email[/[a-z]+/] %>'</h3>
   <hr>
   <div class="row">
     <div class="col-md-6">
@@ -22,8 +22,6 @@
       <% if user_signed_in? %>
       <hr>
         <%= form_for @reservation do |f| %>
-          <%= f.label :booked, "Guests" %>
-          <%= f.number_field :booked, placeholder: "example: 4", class: "form-control" %>
           <%= f.hidden_field :user_id, value: current_user.id %>
           <%= f.hidden_field :rental_id, value: @rental.id %>
           <br>

@@ -2,6 +2,7 @@ class RentalsController < ApplicationController
 
   def index
     @rentals = Rental.all
+    @search = Rental.basic_search(params[:query])
   end
 
   def show

@@ -1,4 +1,4 @@
-<h1><%= @user.email %></h1>
+<h1><%= @user.email[/[a-z]+/] %></h1>
 <br>
 <div class="row">
 
@@ -13,7 +13,7 @@
         <div class="panel-heading"><h3>Upcoming Reservations</h3></div>
         <div class="panel-body">
           <% @user.reservations.each do |reservation| %>
-            <%= image_tag reservation.rental.img.url(:thumb) %>  &nbsp <%= link_to "#{reservation.rental.location}", rental_path(reservation.rental) %>
+            <p><%= image_tag reservation.rental.img.url(:thumb) %>  &nbsp <%= link_to "#{reservation.rental.location}", rental_path(reservation.rental) %></p>
           <% end %>
         </div>
       </div>
@@ -29,9 +29,9 @@
           <div class="panel-heading"><h3>Available locations</h3></div>
           <div class="panel-body">
             <% @user.rentals.each do |rental| %>
-              <%# if rental.reservation.booked %>
-                <p><%= image_tag rental.img.url(:thumb) %> &nbsp <%= link_to "#{rental.location} | #{rental.guests} available", rental_path(rental) %></p>
-              <%# end %>
+              <% if !rental.is_booked? %>
+                <p><%= image_tag rental.img.url(:thumb) %> &nbsp <%= link_to "#{rental.location}", rental_path(rental) %></p>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -41,14 +41,14 @@
           <div class="panel-heading"><h3>Rented locations</h3></div>
           <div class="panel-body">
             <% @user.rentals.each do |rental| %>
-              <% if rental.guests.to_i == 0 %>
-                <p><%= image_tag rental.img.url(:thumb) %> &nbsp <%= link_to "#{rental.location} | #{rental.guests} available", rental_path(rental) %></p>
+              <% if rental.is_booked? %>
+                <p><%= image_tag rental.img.url(:thumb) %> &nbsp <%= link_to "#{rental.location} | booked by: #{rental.find_renter.email}", rental_path(rental) %></p>
               <% end %>
             <% end %>
           </div>
         </div>
       <% else %>
-        <h3>No rentals! Add one now -- -></h3>
+        <h3>No rentals! Add one now ---></h3>
       <% end %>
     </div>
 
