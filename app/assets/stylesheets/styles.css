@@ -3,6 +3,6 @@
   border: solid black 1px;
 }
 
-.rentals {
+.rentals, #no_results {
   display: none;
 }

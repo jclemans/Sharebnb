@@ -17,7 +17,7 @@
 
       <%= form_tag rentals_path, method: :get, class: "navbar-form navbar-left" do %>
         <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search" %>
-        <%= submit_tag 'Search', name: nil, class: "form-control"   %>
+        <%= submit_tag 'Search', name: nil, class: "form-control", id: "search-btn" %>
       <% end %>
 
       <ul class="nav navbar-nav navbar-right">

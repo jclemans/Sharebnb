@@ -17,13 +17,14 @@ Complete:
 
 * As a user, I want to recieve email notifications when I create an account,
 
-To do:
 * As a user, I want to recieve email notifications when I book a reservation, or to remind me of upcoming reservations.
+
+* As a user, I want to be able to search for units by location or description.
+
+To do:
 
 * As a user, I want to choose which dates I reserve a rental for.
 
 * As a rental owner, I want to be able to set dates of availability for my rental
-
-* As a user, I want to be able to search for units by location or description.
 
 * As a user, I want to add tags to my rental to make it easier for people to find it based on it's characteristics.

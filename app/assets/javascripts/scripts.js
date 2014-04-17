@@ -11,4 +11,7 @@ $(document).ready(function() {
     $("li#rentals_tab").removeClass("active");
     $("li#reservations_tab").addClass("active");
   });
+  $("#search-btn").click(function(){
+    $("#no_results").show();
+  });
 });
