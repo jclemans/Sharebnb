@@ -11,8 +11,9 @@ class RentalsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:rental][:user_id])
+    @user = current_user
     @rental = @user.rentals.new(rental_params)
+
     if @rental.save
       redirect_to user_path(current_user)
     else
@@ -39,6 +40,6 @@ class RentalsController < ApplicationController
 
 private
   def rental_params
-    params.require(:rental).permit(:description, :location, :guests, :img)
+    params.require(:rental).permit(:user_id, :description, :location, :guests, :img, :price)
   end
 end

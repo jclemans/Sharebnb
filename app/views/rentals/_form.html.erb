@@ -5,6 +5,8 @@
   <%= f.text_field :description, placeholder: "2 beds, 1 bath, downtown", class: "form-control"  %><br>
   <%= f.label :guests, "Guests" %>
   <%= f.number_field :guests, placeholder: "number of guests", class: "form-control"  %><br>
+  <%= f.label :price, "Per day charge" %>
+  <%= f.number_field :price, placeholder: "price", step: 0.25, class: "form-control"  %><br>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.label :img, "Add a Photo" %>
   <%= f.file_field :img %>

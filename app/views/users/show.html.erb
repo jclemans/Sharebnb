@@ -2,7 +2,8 @@
 <br><br>
 <div class="row">
   <div class="col-md-7">
-    <% if @user.rentals != [] && @user.rentals.size > 1 %>
+
+    <% if @user.rentals.size > 0 %>
       <div class="panel panel-primary">
         <div class="panel-heading"><h3>Available locations:</h3></div>
         <div class="panel-body">

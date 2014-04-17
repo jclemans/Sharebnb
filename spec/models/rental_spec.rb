@@ -7,4 +7,5 @@ describe Rental do
   it { should validate_presence_of :description }
   it { should validate_presence_of :guests }
   it { should validate_numericality_of(:guests).only_integer }
+  it { should validate_presence_of :price }
 end

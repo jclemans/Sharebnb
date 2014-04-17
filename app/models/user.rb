@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   after_create :send_welcome_message
   has_many :rentals
   has_many :reservations
-  has_many :rentals, through: :reservations
 
   def send_welcome_message
     UserMailer.signup_confirmation(self).deliver
