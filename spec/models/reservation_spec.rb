@@ -10,7 +10,7 @@ describe Reservation do
       user = create(:user, :id => 78)
       rental = create(:rental)
       reservation = create(:reservation)
-      reservation.total_booked(rental.id).should eq 1
+      Reservation.total_booked(rental.id).should eq 1
     end
   end
 end

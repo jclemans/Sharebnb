@@ -4,20 +4,21 @@
 
 <ul>
 <% @rentals.each do |rental| %>
-  <% if @rental.guests == @rental.reservation.booked %>
-  <a href="/rentals/<%=rental.id%>">
-  <div class="panel panel-info">
-    <div class="panel-body" id="highlighted">
-      <div class="row">
-        <div class="col-md-3">
-          <%= image_tag rental.img.url(:medium) %>
-        </div>
-        <div class="col-md-9">
-        <%= rental.location %> | <%= rental.description %>
+  <% if rental.guests == Reservation.total_booked(rental.id) %>
+    <a href="/rentals/<%=rental.id%>">
+    <div class="panel panel-info">
+      <div class="panel-body" id="highlighted">
+        <div class="row">
+          <div class="col-md-3">
+            <%= image_tag rental.img.url(:medium) %>
+          </div>
+          <div class="col-md-9">
+          <%= rental.location %> | <%= rental.description %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </a>
+    </a>
+  <% end %>
 <% end %>
 
