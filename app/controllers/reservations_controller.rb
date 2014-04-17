@@ -7,5 +7,8 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @reservation = Reservation.find_by(user_id: current_user.id)
+    @reservation.destroy
+    redirect_to user_path
   end
 end
