@@ -13,7 +13,6 @@ gem 'bcrypt'
 gem 'devise'
 gem 'textacular'
 
-
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

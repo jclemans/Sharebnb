@@ -5,5 +5,6 @@ FactoryGirl.define do
     price 100
     guests 3
     id 99
+    user
   end
 end

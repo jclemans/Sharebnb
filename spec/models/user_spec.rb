@@ -11,9 +11,10 @@ describe User do
 
   context "has_booked" do
     it "checks to see if the current user has booked the rental" do
-      user = FactoryGirl.create(:user, id: 78)
-      reservation = FactoryGirl.create(:reservation)
-      user.has_booked?(99).should eq true
+      rental = FactoryGirl.create(:rental)
+      user = FactoryGirl.create(:user)
+      reservation = FactoryGirl.create(:reservation, user: user)
+      user.has_booked?(rental.id).should eq true
     end
   end
 end
