@@ -13,8 +13,12 @@
       <div class="panel panel-primary">
         <div class="panel-heading"><h3>Upcoming Reservations</h3></div>
         <div class="panel-body">
-          <% @user.reservations.each do |reservation| %>
-            <p><%= image_tag reservation.rental.img.url(:thumb) %>  &nbsp <%= link_to "#{reservation.rental.location}", rental_path(reservation.rental) %></p>
+          <% if @user.reservations.size == 0 %>
+            <p><%= link_to "No reservations yet. Click here to find somewhere neat to stay!", rentals_path %></p>
+          <% else %>
+            <% @user.reservations.each do |reservation| %>
+              <p><%= image_tag reservation.rental.img.url(:thumb) %>  &nbsp <%= link_to "#{reservation.rental.location}", rental_path(reservation.rental) %></p>
+            <% end %>
           <% end %>
         </div>
       </div>

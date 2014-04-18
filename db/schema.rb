@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20140418165610) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "booked"
-    t.date     "startdate"
     t.date     "enddate"
+    t.date     "startdate"
   end
 
   create_table "users", force: true do |t|

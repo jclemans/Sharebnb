@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<script>
+  $(function() {
+    $( "#from" ).datepicker({
+      dateFormat: "MM dd, yy",
+      defaultDate: "+1d",
+      changeMonth: true,
+      numberOfMonths: 2,
+      onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#to" ).datepicker({
+      dateFormat: "MM dd, yy",
+      defaultDate: "+2d",
+      changeMonth: true,
+      numberOfMonths: 2,
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+        $(this).val(selectedDate)
+      }
+    });
+  });
+</script>
+
+  <%= form_for @reservation, url: reservations_path, method: :post do |f| %>
+    <% if !current_user.has_booked?(@rental.id) %>
+      <div class="input-group">
+        <%= f.text_field :startdate, id: "from", class: "form-control input-group" %>
+        <span class="input-group-addon input-sm">to</span>
+        <%= f.text_field :enddate, id: "to", class: "form-control input-group" %>
+      </div>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :rental_id, value: @rental.id %>
+      <%= f.hidden_field :booked, value: true %>
+      <br>
+      <%= f.submit "Bookit!", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
