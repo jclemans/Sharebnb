@@ -1,4 +1,4 @@
-<h1><%= @user.email[/[a-z]+/] %></h1>
+<h1><%= @user.email[/[a-z0-9|\_|\-|\.]+/] %></h1>
 <br>
 <div class="row">
 

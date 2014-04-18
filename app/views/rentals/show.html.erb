@@ -6,7 +6,7 @@
 <% else %>
 
   <h1>Rental at '<%= @rental.location %>' </h1>
-  <h3>owned by '<%= @user.email[/[a-z]+/] %>'</h3>
+  <h3>owned by '<%= @user.email[/[a-z0-9|\_|\-|\.]+/] %>'</h3>
   <hr>
   <div class="row">
     <div class="col-md-6">

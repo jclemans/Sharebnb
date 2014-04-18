@@ -6,3 +6,7 @@
 .rentals, .account {
   display: none;
 }
+
+.search {
+  padding-top: 10px;
+}
