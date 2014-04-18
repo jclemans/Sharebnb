@@ -5,6 +5,7 @@
   <ul class="nav nav-tabs">
     <li id="reservations_tab" class="active"><a>Reservations</a></li>
     <li id="rentals_tab"><a>My Rentals</a></li>
+    <li id="account_tab"><a>My Account</a></li>
   </ul><br>
 
   <div class="reservations">
@@ -15,6 +16,19 @@
           <% @user.reservations.each do |reservation| %>
             <p><%= image_tag reservation.rental.img.url(:thumb) %>  &nbsp <%= link_to "#{reservation.rental.location}", rental_path(reservation.rental) %></p>
           <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 pull-right">
+    </div>
+  </div>
+
+  <div class="account">
+    <div class="col-md-7">
+      <div class="panel panel-primary">
+        <div class="panel-heading"><h3>My Account Details</h3></div>
+        <div class="panel-body">
+          <%= render "devise/registrations/edit" %>
         </div>
       </div>
     </div>

@@ -8,9 +8,7 @@ class RentalsController < ApplicationController
         @unavailable << rental
       end
     end
-    @unavailable
-    @search = Rental.basic_search(params[:query])
-    @search = @search - @unavailable
+    @search = Rental.basic_search(params[:query]) - @unavailable
   end
 
   def show
