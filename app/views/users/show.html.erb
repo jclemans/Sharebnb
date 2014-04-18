@@ -1,3 +1,4 @@
+<%= content_for(:title, "#{current_user.email[/[a-z0-9|\_|\-|\.]+/]} | Sharebnb") %>
 <h1><%= @user.email[/[a-z0-9|\_|\-|\.]+/] %></h1>
 <br>
 <div class="row">
@@ -16,8 +17,8 @@
           <% if @user.reservations.size == 0 %>
             <p><%= link_to "No reservations yet. Click here to find somewhere neat to stay!", rentals_path %></p>
           <% else %>
-            <% @user.reservations.each do |reservation| %>
-              <p><%= image_tag reservation.rental.img.url(:thumb) %>  &nbsp <%= link_to "#{reservation.rental.location}", rental_path(reservation.rental) %></p>
+            <% @user.reservations.order(:startdate).each do |reservation| %>
+              <p><%= image_tag reservation.rental.img.url(:thumb) %>  &nbsp <%= link_to "#{reservation.rental.location} | #{reservation.startdate.strftime('%B %d')} - #{reservation.startdate.strftime('%B %d %Y')}", rental_path(reservation.rental) %></p>
             <% end %>
           <% end %>
         </div>

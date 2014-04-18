@@ -1,14 +1,19 @@
 class RentalsController < ApplicationController
 
   def index
-    @rentals = Rental.all - current_user.rentals
+    if user_signed_in?
+      user_rentals = current_user.rentals
+    else
+      user_rentals = []
+    end
+    @rentals = Rental.all - user_rentals
     @unavailable = []
     @rentals.each do |rental|
       if rental.is_booked?
         @unavailable << rental
       end
     end
-    @search = Rental.basic_search(params[:query]) - @unavailable - current_user.rentals
+    @search = Rental.basic_search(params[:query]) - @unavailable - user_rentals
   end
 
   def show
