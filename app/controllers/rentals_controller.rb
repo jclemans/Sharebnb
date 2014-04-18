@@ -1,14 +1,14 @@
 class RentalsController < ApplicationController
 
   def index
-    @rentals = Rental.all
+    @rentals = Rental.all - current_user.rentals
     @unavailable = []
     @rentals.each do |rental|
       if rental.is_booked?
         @unavailable << rental
       end
     end
-    @search = Rental.basic_search(params[:query]) - @unavailable
+    @search = Rental.basic_search(params[:query]) - @unavailable - current_user.rentals
   end
 
   def show
@@ -32,7 +32,7 @@ class RentalsController < ApplicationController
     @user = User.find(params[:rental][:user_id])
     @rental = Rental.find(params[:id])
     if @rental.update(rental_params)
-      redirect_to user_path
+      redirect_to rental_path
     else
       render 'show'
     end

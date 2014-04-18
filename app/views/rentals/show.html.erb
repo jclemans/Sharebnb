@@ -1,8 +1,41 @@
 <% if current_user == @rental.user %>
-  <h1>Rental at '<%= @rental.location %>' </h1>
+
+    <h3>Current Look</h3><hr>
+
+    <h1>Rental at '<%= @rental.location %>' </h1>
+    <h3>owned by '<%= @user.email[/[a-z0-9|\_|\-|\.]+/] %>'</h3>
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag @rental.img.url(:big) %>
+      </div>
+      <div class="col-md-6">
+        <h3>Description</h3>
+        <p><%= @rental.description %></p>
+        <h3>Accomodates up to</h3>
+        <p><%= pluralize(@rental.guests, 'guest') %></p>
+        <h3>Price per day</h3>
+        <p><%= number_to_currency(@rental.price) %></p>
+        <% if user_signed_in? %>
+        <hr>
+          <%= form_for @reservation do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :rental_id, value: @rental.id %>
+            <br>
+          <% end %>
+          <% if current_user.has_booked?(@rental.id) %>
+          <%= link_to "Cancel", reservation_path, method: "delete", class: "btn btn-danger" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <br>
+  <h1>Edit '<%= @rental.location %>' </h1>
   <hr>
   <%= render "layouts/errors", object: @rental %>
   <%= render 'form' %>
+  <br><br>
+
 <% else %>
 
   <h1>Rental at '<%= @rental.location %>' </h1>

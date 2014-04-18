@@ -23,5 +23,7 @@ $(document).ready(function() {
     $("li#reservations_tab").removeClass("active");
     $("li#account_tab").addClass("active");
   });
-
+  $("#preview").click(function(){
+    $(".preview").show();
+  });
 });
