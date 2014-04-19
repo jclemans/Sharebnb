@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Rental do
   it { should belong_to :user }
   it { should have_many :reservations }
+  it { should have_many :reviews }
   it { should validate_presence_of :location }
   it { should validate_presence_of :description }
   it { should validate_presence_of :guests }

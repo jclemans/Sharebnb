@@ -20,6 +20,7 @@ class RentalsController < ApplicationController
     @rental = Rental.find(params[:id])
     @reservation = Reservation.new
     @user = @rental.user
+    @review = Review.new
   end
 
   def create

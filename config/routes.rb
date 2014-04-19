@@ -4,4 +4,5 @@ Sharebnb::Application.routes.draw do
   resources :users, only: [:show, :index]
   resources :rentals
   resources :reservations
+  resources :reviews, only: [:create]
 end
